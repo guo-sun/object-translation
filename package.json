@@ -1,0 +1,17 @@
+{
+    "name": "translator",
+    "version": "0.0.1",
+    "description": "Generate translator functions from a map",
+    "main": "src/index.js",
+    "author": "Steven Sun",
+    "license": "MIT",
+    "private": false,
+    "devDependencies": {
+        "@babel/preset-env": "^7.4.2",
+        "jest": "^24.6.0",
+        "parcel": "^1.12.3"
+    },
+    "scripts": {
+        "test": "jest"
+    }
+}
