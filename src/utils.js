@@ -1,5 +1,3 @@
-const noop = () => void 0
-
 export const pathify = stringPath => stringPath.split('.') // TODO use regex for brackets
 
 export const select = (path, obj) => {
