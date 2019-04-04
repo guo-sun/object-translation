@@ -1,9 +1,9 @@
-# object-translation
+# simple-object-translation
 
 `parseTranslationMap` builds two translator functions from an object map. The first function takes an object from the shape implied by the map's paths to the map structure, and the second from the map structure to the implied object shape.
 
 ```js
-import { parseTranslationMap } from 'object-translation'
+import { parseTranslationMap } from 'simple-object-translation'
 
 const foosToXsTranslationMap = {
     foo: 'x',
