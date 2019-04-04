@@ -1,16 +1,16 @@
 {
-    "name": "object-translation",
+    "name": "simple-object-translation",
     "version": "0.0.1",
-    "description": "Generate translator functions from an object map",
-    "main": "dist/object-translation.umd.js",
-    "module": "dist/object-translation.esm.js",
+    "description": "Generate (to and from) translator functions from an object map of string paths",
+    "main": "dist/index.umd.js",
+    "module": "dist/index.esm.js",
     "author": "Steven Sun steven.s32@gmail.com",
     "license": "MIT",
     "private": false,
     "sideEffects": false,
     "repository": {
         "type": "git",
-        "url": "https://github.com/guo-sun/object-translation"
+        "url": "https://github.com/guo-sun/simple-object-translation"
     },
     "keywords": ["object-to-object", "translator"],
     "devDependencies": {
