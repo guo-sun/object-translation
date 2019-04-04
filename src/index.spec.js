@@ -208,6 +208,44 @@ describe('parseTranslationMap', () => {
         })
     })
 
+    it('should produce arrows for partially nested maps', () => {
+        const foosToXsTranslationMap = {
+            foo: 'x',
+            bar: 'y.y',
+            baz: 'y.z'
+        }
+
+        const [toFoos, toXs] = parseTranslationMap(foosToXsTranslationMap)
+
+        const foos = {
+            foo: 'foo',
+            bar: 'bar',
+            baz: 'baz',
+        }
+
+        const xs = {
+            x: 'x',
+            y: {
+                y: 'y',
+                z: 'z'
+            }
+        }
+
+        expect(toFoos(xs)).toEqual({
+            foo: 'x',
+            bar: 'y',
+            baz: 'z'
+        })
+
+        expect(toXs(foos)).toEqual({
+            x: 'foo',
+            y: {
+                y: 'bar',
+                z: 'baz'
+            }
+        })
+    })
+
     it('should produce arrows for maps which point to objects', () => {
         const nestedMapBazToZ = {
             foo: {
