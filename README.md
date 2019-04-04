@@ -41,3 +41,5 @@ expect(toXs(foos)).toEqual({
     }
 })
 ```
+
+Blazingly small ~1kb unzipped (but slower than just writing these functions out)
