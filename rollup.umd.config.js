@@ -4,9 +4,9 @@ import { terser } from 'rollup-plugin-terser'
 export default {
     input: 'src/index.js',
     output: {
-        file: 'dist/index.js',
+        file: 'dist/object-translation.umd.js',
         format: 'umd',
-        name: 'translator'
+        name: 'object-translation'
     },
     plugins: [
         babel({

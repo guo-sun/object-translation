@@ -2,21 +2,29 @@
     "name": "object-translation",
     "version": "0.0.1",
     "description": "Generate translator functions from an object map",
-    "main": "src/index.js",
+    "main": "dist/object-translation.umd.js",
+    "module": "dist/object-translation.esm.js",
     "author": "Steven Sun steven.s32@gmail.com",
     "license": "MIT",
     "private": false,
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/guo-sun/object-translation"
+    },
+    "keywords": ["object-to-object", "translator"],
     "devDependencies": {
         "@babel/preset-env": "^7.4.2",
         "jest": "^24.6.0",
-        "parcel": "^1.12.3",
         "rollup": "^1.8.0",
         "rollup-plugin-babel": "^4.3.2",
         "rollup-plugin-terser": "^4.0.4"
     },
     "scripts": {
         "test": "jest",
-        "build": "rollup --config",
-        "build:es6": "rollup --config rollup.es6.config.js"
+        "build": "yarn build:umd && yarn build:esm",
+        "build:umd": "rollup --config rollup.umd.config.js",
+        "build:esm": "rollup --config rollup.esm.config.js",
+        "prepublisH": "yarn test && yarn build"
     }
 }
