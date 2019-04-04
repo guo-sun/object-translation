@@ -164,7 +164,7 @@ describe('parseTranslationMap', () => {
         })
     })
 
-    it('should consume nested maps', () => {
+    it('should produce arrows for nested maps', () => {
         const nestedMapBazToZ = {
             foo: {
                 bar: {
@@ -205,6 +205,84 @@ describe('parseTranslationMap', () => {
                     z: 'baz'
                 }
             }
+        })
+    })
+
+    it('should produce arrows for maps which point to objects', () => {
+        const nestedMapBazToZ = {
+            foo: {
+                bar: 'x.y'
+            }
+        }
+
+        const baz = {
+            foo: {
+                bar: {
+                    baz: 'baz'
+                }
+            }
+        }
+
+        const z = {
+            x: {
+                y: {
+                    z: 'z'
+                }
+            }
+        }
+
+        const [toBaz, toZ] = parseTranslationMap(nestedMapBazToZ)
+
+        expect(toBaz(z)).toEqual({
+            foo: {
+                bar: {
+                    z: 'z'
+                }
+            }
+        })
+
+        expect(toZ(baz)).toEqual({
+            x: {
+                y: {
+                    baz: 'baz'
+                }
+            }
+        })
+    })
+
+    it('should produce arrows for maps on objects containing arrays', () => {
+        const fooArrayMap = {
+            fooArr: 'barArr'
+        }
+
+        const fooObj = {
+            fooArr: [
+                '0th',
+                '1st',
+                '2nd'
+            ]
+        }
+
+        const barObj = {
+            barArr: [
+                'a',
+                'b',
+                'c'
+            ]
+        }
+
+        const [toFoo, toBar] = parseTranslationMap(fooArrayMap)
+
+        expect(toFoo(barObj)).toEqual({
+            fooArr: expect.arrayContaining([
+                'a','b','c'
+            ])
+        })
+
+        expect(toBar(fooObj)).toEqual({
+            barArr: expect.arrayContaining([
+                '0th','1st','2nd'
+            ])
         })
     })
 })

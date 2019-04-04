@@ -17,7 +17,7 @@ export const select = (path, obj) => {
 }
 
 export const place = (path, value, obj) => {
-    const ps = path.slice(0,-1)
+    const ps = path.slice(0, -1)
     const leaf = path[path.length - 1]
 
     const workingObj = {...obj}
@@ -26,7 +26,8 @@ export const place = (path, value, obj) => {
 
     while (ps.length) {
         const index = ps.shift()
-        const node = {...parentNode[index]} // TODO arrays
+        const _node = parentNode[index]
+        const node = Array.isArray(_node) ? [..._node] : {..._node}
 
         parentNode[index] = node
         parentNode = node

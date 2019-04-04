@@ -100,6 +100,14 @@ describe('place', () => {
             foo: 'foo'
         })
     })
+
+    it('should maintain array structures', () => {
+        expect(place(['arr','0'], 'foo', {arr:['a','b']})).toEqual({
+            arr: expect.arrayContaining([
+                'foo','b'
+            ])
+        })
+    })
 })
 
 describe('visitReduce', () => {
@@ -114,7 +122,12 @@ describe('visitReduce', () => {
                 bar: 'bar'
             },
             foo: 'foo',
-            notHere: null
+            notHere: null,
+            arr: [
+                '0th',
+                '1st',
+                '2nd'
+            ]
         }
 
         const valuesAtPath = (valuePaths, path, value) =>
@@ -127,7 +140,10 @@ describe('visitReduce', () => {
             'propA/bar contains bar',
             'foo contains foo',
             'notHere contains null',
-            'propA/propB/undef contains undefined'
+            'propA/propB/undef contains undefined',
+            'arr/0 contains 0th',
+            'arr/1 contains 1st',
+            'arr/2 contains 2nd',
         ]
 
         expect(allValuesAtPaths).toEqual(expect.arrayContaining(expectedValuesAtPaths)) 
